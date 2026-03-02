@@ -361,35 +361,126 @@
                                             Schedule a free consultation to discover personalized solutions from 
                                             our financial experts.
                                         </p>
-                                        <form action="#" id="contact-form" class="contact-form-box-4">
-                                            <div class="row g-4">
-                                                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                                    <div class="form-clt">
-                                                        <input type="text" placeholder="Full name *">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                                                    <div class="form-clt">
-                                                        <input type="text" placeholder="Email *">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
-                                                    <div class="form-clt">
-                                                        <input type="text" placeholder="Phone number *">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
-                                                    <div class="form-clt">
-                                                        <textarea name="message" placeholder="Your comment *"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-7 wow fadeInUp" data-wow-delay=".5s">
-                                                    <button type="submit" class="theme-btn wow fadeInUp" data-wow-delay=".5s">
-                                                        Submit your message <i class="fa-solid fa-arrow-up-right"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                      <form id="contact-form" class="contact-form-box-4">
+    <div class="row g-4">
+
+        <div class="col-lg-6 col-md-6">
+            <div class="form-clt">
+                <input type="text" name="fullname" id="cf_name" placeholder="Full name *" required>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="form-clt">
+                <input type="email" name="email" id="cf_email" placeholder="Email *" required>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-clt">
+                <input type="text" name="phone" id="cf_phone" placeholder="Phone number *" required>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-clt">
+                <textarea name="message" id="cf_message" placeholder="Your comment *" required></textarea>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <button type="submit" class="theme-btn" id="cf_submit">
+                <span id="cf_btnText">Submit your message</span>
+                <span id="cf_loader" style="display:none;">
+                    <i class="fa fa-spinner fa-spin"></i> Sending...
+                </span>
+            </button>
+        </div>
+
+    </div>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("cf_submit");
+  const btnText = document.getElementById("cf_btnText");
+  const loader = document.getElementById("cf_loader");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("cf_name").value.trim();
+    const email = document.getElementById("cf_email").value.trim();
+    const phone = document.getElementById("cf_phone").value.trim();
+    const message = document.getElementById("cf_message").value.trim();
+
+    if (!name || !email || !phone || !message) {
+      showToast("Please fill all required fields ❌", "error");
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(email)) {
+      showToast("Invalid email address ❌", "error");
+      return;
+    }
+
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+      showToast("Phone must be 10 digits ❌", "error");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    btnText.style.display = "none";
+    loader.style.display = "inline";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("send_contact.php", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        showToast(result.message, "success");
+        form.reset();
+      } else {
+        showToast(result.message, "error");
+      }
+
+    } catch (error) {
+      showToast("Server error ❌", "error");
+    }
+
+    submitBtn.disabled = false;
+    btnText.style.display = "inline";
+    loader.style.display = "none";
+  });
+
+  function showToast(message, type) {
+    const toast = document.createElement("div");
+    toast.innerText = message;
+    toast.style.position = "fixed";
+    toast.style.top = "20px";
+    toast.style.right = "20px";
+    toast.style.padding = "12px 20px";
+    toast.style.color = "#fff";
+    toast.style.borderRadius = "5px";
+    toast.style.zIndex = "9999";
+    toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545";
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+});
+</script>
                                     </div>
                                 </div>
                             </div>
