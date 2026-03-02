@@ -135,8 +135,8 @@
                                     <i class="fal fa-envelope"></i>
                                 </div>
                                 <div class="offcanvas__contact-text">
-                                    <a href="mailto:info@example.com"><span
-                                            class="mailto:info@example.com">info@example.com</span></a>
+                                    <a href="mailto:healswift2020@gmail.com"><span
+                                            class="mailto:healswift2020@gmail.com">healswift2020@gmail.com</span></a>
                                 </div>
                             </li>
                             <li class="d-flex align-items-center">
@@ -204,7 +204,7 @@
                                         </a>
 
                                     </li>
-                                  
+
 
                                     <li>
                                         <a href="blog.html">
@@ -1064,11 +1064,11 @@
             <section class="news-section section-padding fix">
                 <div class="container custom-container">
                     <div class="section-title text-center animation">
-                   <span class="sub-title wow fadeInUp">Tech Insights</span>
-<h2 class="gt_title_animation">
-    <span>Industry updates</span>
-    & IT knowledge hub
-</h2>
+                        <span class="sub-title wow fadeInUp">Tech Insights</span>
+                        <h2 class="gt_title_animation">
+                            <span>Industry updates</span>
+                            & IT knowledge hub
+                        </h2>
                     </div>
                     <div class="news-wrapper">
                         <div class="row g-4">
@@ -1079,15 +1079,16 @@
                                         <img src="assets/img/home-1/news/01.jpg" alt="img">
                                     </div>
                                     <div class="news-content">
-                                     <div class="top-content">
-    <p>Feb 15, 2026</p>
-    <span>IT Solutions</span>
-</div>
-<h3>
-    <a href="news-details.html">
-        How custom software <br> improves business <br> efficiency & <br> automation
-    </a>
-</h3>
+                                        <div class="top-content">
+                                            <p>Feb 15, 2026</p>
+                                            <span>IT Solutions</span>
+                                        </div>
+                                        <h3>
+                                            <a href="news-details.html">
+                                                How custom software <br> improves business <br> efficiency & <br>
+                                                automation
+                                            </a>
+                                        </h3>
                                         <a href="news-details.html" class="link-btn">Read More
                                             <i class="fa-solid fa-arrow-up-right"></i>
                                         </a>
@@ -1101,16 +1102,16 @@
                                         <img src="assets/img/home-1/news/news-2.jpg" alt="img">
                                     </div>
                                     <div class="news-content">
-                                       <div class="top-content">
-    <p>Feb 10, 2026</p>
-    <span>Cyber Security</span>
-</div>
-<h3>
-    <a href="news-details.html">
-        Top data backup strategies <br>
-        every business should use
-    </a>
-</h3>
+                                        <div class="top-content">
+                                            <p>Feb 10, 2026</p>
+                                            <span>Cyber Security</span>
+                                        </div>
+                                        <h3>
+                                            <a href="news-details.html">
+                                                Top data backup strategies <br>
+                                                every business should use
+                                            </a>
+                                        </h3>
                                         <a href="news-details.html" class="link-btn">Read More
                                             <i class="fa-solid fa-arrow-up-right"></i>
                                         </a>
@@ -1124,16 +1125,16 @@
                                         <img src="assets/img/home-1/news/news-3.jpg" alt="img">
                                     </div>
                                     <div class="news-content">
-                                      <div class="top-content">
-    <p>Feb 05, 2026</p>
-    <span>IT Infrastructure</span>
-</div>
-<h3>
-    <a href="news-details.html">
-        Why reliable IT support <br>
-        is critical for growing companies
-    </a>
-</h3>
+                                        <div class="top-content">
+                                            <p>Feb 05, 2026</p>
+                                            <span>IT Infrastructure</span>
+                                        </div>
+                                        <h3>
+                                            <a href="news-details.html">
+                                                Why reliable IT support <br>
+                                                is critical for growing companies
+                                            </a>
+                                        </h3>
                                         <a href="news-details.html" class="link-btn">Read More
                                             <i class="fa-solid fa-arrow-up-right"></i>
                                         </a>
@@ -1147,7 +1148,7 @@
 
 
             <!-- Footer Section Start -->
-           <footer class="footer-section fix">
+            <footer class="footer-section fix">
                 <div class="container custom-container">
                     <div class="footer-widget-wrapper">
                         <div class="row">
@@ -1169,10 +1170,91 @@
                                         </div>
                                     </div>
                                     <div class="search-widget wow fadeInUp" data-wow-delay=".5s">
-                                        <form action="#">
-                                            <input type="text" placeholder="Type your Email address">
-                                            <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                                     <form id="miniNewsletterForm">
+                                            <input type="email" name="email" id="miniEmail"
+                                                placeholder="Type your Email address" required>
+
+                                            <button type="submit" id="miniBtn">
+                                                <span id="miniBtnText">
+                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                </span>
+                                                <span id="miniLoader" style="display:none;">
+                                                    <i class="fa fa-spinner fa-spin"></i>
+                                                </span>
+                                            </button>
                                         </form>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+
+                                                const form = document.getElementById("miniNewsletterForm");
+                                                const btn = document.getElementById("miniBtn");
+                                                const btnText = document.getElementById("miniBtnText");
+                                                const loader = document.getElementById("miniLoader");
+
+                                                form.addEventListener("submit", async function (e) {
+                                                    e.preventDefault();
+
+                                                    const email = document.getElementById("miniEmail").value.trim();
+
+                                                    if (!email) {
+                                                        showToast("Please enter your email ❌", "error");
+                                                        return;
+                                                    }
+
+                                                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+                                                    if (!emailPattern.test(email)) {
+                                                        showToast("Invalid email address ❌", "error");
+                                                        return;
+                                                    }
+
+                                                    btn.disabled = true;
+                                                    btnText.style.display = "none";
+                                                    loader.style.display = "inline-block";
+
+                                                    const formData = new FormData(form);
+
+                                                    try {
+                                                        const response = await fetch("send_mini_newsletter.php", {
+                                                            method: "POST",
+                                                            body: formData
+                                                        });
+
+                                                        const result = await response.json();
+
+                                                        if (result.status === "success") {
+                                                            showToast(result.message, "success");
+                                                            form.reset();
+                                                        } else {
+                                                            showToast(result.message || "Something went wrong ❌", "error");
+                                                        }
+
+                                                    } catch (error) {
+                                                        showToast("Server error ❌", "error");
+                                                    }
+
+                                                    btn.disabled = false;
+                                                    btnText.style.display = "inline-block";
+                                                    loader.style.display = "none";
+                                                });
+
+                                                function showToast(message, type) {
+                                                    const toast = document.createElement("div");
+                                                    toast.innerText = message;
+                                                    toast.style.position = "fixed";
+                                                    toast.style.top = "20px";
+                                                    toast.style.right = "20px";
+                                                    toast.style.padding = "12px 20px";
+                                                    toast.style.color = "#fff";
+                                                    toast.style.borderRadius = "5px";
+                                                    toast.style.zIndex = "9999";
+                                                    toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545";
+                                                    document.body.appendChild(toast);
+
+                                                    setTimeout(() => toast.remove(), 3000);
+                                                }
+
+                                            });
+                                        </script>
                                     </div>
                                     <div class="footer-bottom-item wow fadeInUp" data-wow-delay=".3s">
                                         <p>Copyright 2026 <span>Vanta Edge</span> | All Right Reserved.</p>
@@ -1221,7 +1303,7 @@
                                             <div class="footer-list wow fadeInUp" data-wow-delay=".5s">
                                                 <h3>Useful Link</h3>
                                                 <ul class="list-area">
-                                                     <li>
+                                                    <li>
                                                         <a href="index.html">
                                                             Home
                                                         </a>
@@ -1241,9 +1323,9 @@
                                                             Blog
                                                         </a>
                                                     </li>
-                                                   <li>
+                                                    <li>
                                                         <a href="contact.html">
-                                                          Contact
+                                                            Contact
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -1268,11 +1350,11 @@
                                                     </li>
                                                     <li>
                                                         <a href="it-infrasructure.html">
-                                                          IT Infrastructure Setup
+                                                            IT Infrastructure Setup
                                                         </a>
                                                     </li>
-                                                    
-                                                  
+
+
                                                 </ul>
                                             </div>
                                         </div>
