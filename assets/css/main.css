@@ -2596,6 +2596,9 @@ span {
   height: 100%;
 }
 
+.top{
+  padding-top: 100px;
+}
 .footer-widget-wrapper .footer-left-content {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 100px;
@@ -2621,6 +2624,7 @@ span {
     gap: 30px;
     margin-bottom: 30px;
     margin-top: 30px;
+    justify-content: center;
   }
 }
 .footer-widget-wrapper .footer-left-content .footer-content-item .contact-info span {
