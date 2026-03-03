@@ -146,7 +146,7 @@
 
 
     <!-- Offcanvas Area Start -->
-    <div class="fix-area">
+     <div class="fix-area">
         <div class="offcanvas__info">
             <div class="offcanvas__wrapper">
                 <div class="offcanvas__content">
@@ -162,12 +162,12 @@
                             </button>
                         </div>
                     </div>
-                    <p class="text d-none d-xl-block">
+                    <!-- <p class="text d-none d-xl-block">
                         Nullam dignissim, ante scelerisque the is euismod fermentum odio sem semper the is erat, a
                         feugiat leo urna eget eros. Duis Aenean a imperdiet risus.
-                    </p>
+                    </p> -->
                     <div class="mobile-menu fix mb-3"></div>
-                    <div class="offcanvas__contact d-xl-block">
+                    <!-- <div class="offcanvas__contact d-xl-block">
                         <h4 class="d-xl-block">Contact Info</h4>
                         <ul class="d-xl-block">
                             <li class="d-flex align-items-center">
@@ -210,7 +210,7 @@
                             <a href="#"><i class="fab fa-youtube"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -352,7 +352,7 @@
                             </div>
                             <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
                                 <li>
-                                    Service details
+                                    Data Backup & Security
                                 </li>
                             </ul>
                         </div>
@@ -437,7 +437,7 @@
                                     </ul>
                                 </div>
                             </div>
-
+<!-- 
                             <div class="col-xl-5 col-md-5 col-lg-5">
                                 <div class="details-thumb">
                                     <img data-speed=".8" src="assets/img/inner-page/service-details-2.jpg"
@@ -450,7 +450,7 @@
                                     <img data-speed=".8" src="assets/img/inner-page/service-details-3.jpg"
                                         alt="Cyber Security">
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -683,114 +683,13 @@
                 </section> -->
 
             <!-- Footer Section Start -->
-            <footer class="footer-section fix">
+     <footer class="footer-section fix">
                 <div class="container custom-container">
                     <div class="footer-widget-wrapper">
                         <div class="row">
-                            <div class="col-xl-5 col-lg-5 col-md-6">
+                            <div class="col-lg-5 col-md-6">
                                 <div class="footer-left-content">
-                                    <a href="index.html"><img src="assets/img/logo/black-logo.svg" alt="img"></a>
-                                    <div class="footer-content-item wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="contact-info">
-                                            <span>New York Office</span>
-                                            <p>
-                                                123 Madison Avenue, Suite 600 New York, NY 10016, USA
-                                            </p>
-                                        </div>
-                                        <div class="contact-info">
-                                            <span>London Office</span>
-                                            <p>
-                                                45 King’s Road, 3rd Floor Chelsea, London SW3 5EP, UK
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="search-widget wow fadeInUp" data-wow-delay=".5s">
-                                        <form id="miniNewsletterForm">
-                                            <input type="email" name="email" id="miniEmail"
-                                                placeholder="Type your Email address" required>
-
-                                            <button type="submit" id="miniBtn">
-                                                <span id="miniBtnText">
-                                                    <i class="fa-solid fa-paper-plane"></i>
-                                                </span>
-                                                <span id="miniLoader" style="display:none;">
-                                                    <i class="fa fa-spinner fa-spin"></i>
-                                                </span>
-                                            </button>
-                                        </form>
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", function () {
-
-                                                const form = document.getElementById("miniNewsletterForm");
-                                                const btn = document.getElementById("miniBtn");
-                                                const btnText = document.getElementById("miniBtnText");
-                                                const loader = document.getElementById("miniLoader");
-
-                                                form.addEventListener("submit", async function (e) {
-                                                    e.preventDefault();
-
-                                                    const email = document.getElementById("miniEmail").value.trim();
-
-                                                    if (!email) {
-                                                        showToast("Please enter your email ❌", "error");
-                                                        return;
-                                                    }
-
-                                                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-                                                    if (!emailPattern.test(email)) {
-                                                        showToast("Invalid email address ❌", "error");
-                                                        return;
-                                                    }
-
-                                                    btn.disabled = true;
-                                                    btnText.style.display = "none";
-                                                    loader.style.display = "inline-block";
-
-                                                    const formData = new FormData(form);
-
-                                                    try {
-                                                        const response = await fetch("send_mini_newsletter.php", {
-                                                            method: "POST",
-                                                            body: formData
-                                                        });
-
-                                                        const result = await response.json();
-
-                                                        if (result.status === "success") {
-                                                            showToast(result.message, "success");
-                                                            form.reset();
-                                                        } else {
-                                                            showToast(result.message || "Something went wrong ❌", "error");
-                                                        }
-
-                                                    } catch (error) {
-                                                        showToast("Server error ❌", "error");
-                                                    }
-
-                                                    btn.disabled = false;
-                                                    btnText.style.display = "inline-block";
-                                                    loader.style.display = "none";
-                                                });
-
-                                                function showToast(message, type) {
-                                                    const toast = document.createElement("div");
-                                                    toast.innerText = message;
-                                                    toast.style.position = "fixed";
-                                                    toast.style.top = "20px";
-                                                    toast.style.right = "20px";
-                                                    toast.style.padding = "12px 20px";
-                                                    toast.style.color = "#fff";
-                                                    toast.style.borderRadius = "5px";
-                                                    toast.style.zIndex = "9999";
-                                                    toast.style.backgroundColor = type === "success" ? "#28a745" : "#dc3545";
-                                                    document.body.appendChild(toast);
-
-                                                    setTimeout(() => toast.remove(), 3000);
-                                                }
-
-                                            });
-                                        </script>
-                                    </div>
+                                    <a href="index.html"><img src="assets/img/logo/black-logo.svg" width="300px" alt="img"></a>
                                     <div class="footer-bottom-item wow fadeInUp" data-wow-delay=".3s">
                                         <p>Copyright 2026 <span>Vanta Edge</span> | All Right Reserved.</p>
                                         <div class="social-icon">
@@ -812,23 +711,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-7 col-lg-7 col-md-6">
+                            <div class="col-lg-7 col-md-6">
                                 <div class="footer-right-content">
-                                    <div class="footer-top-content">
-                                        <h2 class="gt_title_anim">
-                                            Join our team to create <br> the
-                                            <span>best digital solutions.</span>
-                                        </h2>
-                                        <a href="contact.html" class="theme-btn">Let’s Talk <i
-                                                class="fa-solid fa-arrow-up-right"></i></a>
-                                    </div>
+                         
                                     <div class="footer-right-contact-items">
                                         <div class="contact-cont wow fadeInUp" data-wow-delay=".3s">
                                             <h3>Contact Us</h3>
-                                            <h4>
-                                                <i class="fa-solid fa-phone"></i>
-                                                <a href="tel:+8801234567">+880 123 4567</a>
-                                            </h4>
+                                         
                                             <h4 class="mb-0">
                                                 <i class="fa-solid fa-envelope"></i>
                                                 <a href="mailto:healswift2020@gmail.com">healswift2020@gmail.com</a>
