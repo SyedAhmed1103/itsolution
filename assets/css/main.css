@@ -2738,7 +2738,7 @@ span {
 .footer-widget-wrapper .footer-right-content {
   padding-top: 100px;
   padding-bottom: 55px;
-  margin-left: 150px;
+  margin-left: 80px;
 }
 @media (max-width: 1899px) {
   .footer-widget-wrapper .footer-right-content {
@@ -2885,15 +2885,7 @@ span {
 .footer-section {
   position: relative;
 }
-.footer-section::before {
-  position: absolute;
-  content: "";
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 1px;
-  right: 0;
-  width: 1107px;
-  top: 300px;
-}
+
 @media (max-width: 1899px) {
   .footer-section::before {
     width: 950px;
@@ -12507,4 +12499,10 @@ span {
 
 .header-logo img{
   width: 160px;
+}
+
+@media (min-width: 1100px) {
+    .header__hamburger {
+        display: none !important;
+    }
 }
